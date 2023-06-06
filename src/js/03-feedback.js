@@ -1,5 +1,3 @@
-import '../css/common.css';
-import '../css/03-feedback.css';
 import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'feedback-form-state';
@@ -17,8 +15,8 @@ refs.form.addEventListener('input', throttle(onTextareaInput, 500));
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
   e.currentTarget.reset();
-  const objData = JSON.parse(localStorage.getItem(STORAGE_KEY));
   localStorage.removeItem(STORAGE_KEY);
+  console.log(formData);
 });
 
 function onTextareaInput(e) {
@@ -31,7 +29,6 @@ function populateTextarea() {
   const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (savedMessage === null) {
-    //console.log(savedMessage);
     return;
   }
   refs.textarea.value = savedMessage['message'] || '';

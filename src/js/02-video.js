@@ -1,4 +1,3 @@
-import '../css/common.css';
 import Player from '@vimeo/player';
 import { throttle } from 'lodash';
 
@@ -13,22 +12,7 @@ const onPlay = function (data) {
 player.on('timeupdate', throttle(onPlay, 1000));
 
 function resumePlayback() {
-  if (JSON.parse(localStorage.getItem(TIME_KEY)) === null) {
-    return;
-  }
   const paused = JSON.parse(localStorage.getItem(TIME_KEY))['seconds'];
-  if (paused) {
-    player
-      .setCurrentTime(paused)
-      .then(function (seconds) {})
-      .catch(function (error) {
-        switch (error.name) {
-          case 'Error':
-            break;
-          default:
-            break;
-        }
-      });
-  }
+  player.setCurrentTime(paused || 0);
 }
 resumePlayback();
