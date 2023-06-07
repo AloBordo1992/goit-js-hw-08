@@ -6,7 +6,7 @@ const refs = {
   textarea: document.querySelector('.feedback-form textarea'),
   input: document.querySelector('input'),
 };
-const formData = {};
+const formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? {};
 
 populateTextarea();
 
